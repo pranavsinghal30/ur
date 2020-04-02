@@ -1,6 +1,8 @@
 // @flow
 
 import * as React from "react";
+import ReactSimpleMap from "./ReactSimpleMap";
+import table from "./table";
 
 import {
   Page,
@@ -25,45 +27,127 @@ import C3Chart from "react-c3js";
 
 import SiteWrapper from "./SiteWrapper.react";
 
+var today = new Date();
+var arr = [];
+var v = ["data1"];
+var daily_saving = 0;
+var i = 0;
+
+//console.log(new Date(2020,0,20))
+for (var d = new Date(2020,0,14);d <= today ;d.setDate(d.getDate()+1))
+{
+  arr.push(d.getDate()+"/"+d.getMonth());
+  v.push(i);
+  //console.log(d)
+  //console.log(d.getTime() == new Date(2020,0,20).getTime())
+  
+  if (d.getTime() == new Date(2020,0,20).getTime())
+  {//china
+    daily_saving+=57.31496;
+    //console.log("in side china")
+  }
+  if (d.getTime() == new Date(2020,2,9).getTime())
+  { // Italy
+    daily_saving+=3.09127;
+  }
+  if (d.getTime() == new Date(2020,2,14).getTime())
+  {//spain
+    daily_saving+=2.39046;
+  }  
+  if (d.getTime() == new Date(2020,2,17).getTime())
+  {//france
+    daily_saving+=3.33728;
+  }
+  if (d.getTime() == new Date(2020,2,22).getTime())
+  {//germany
+    daily_saving+=4.28368;
+  }
+  if (d.getTime() == new Date(2020,2,23).getTime())
+  {//UK
+    daily_saving+=3.40751;
+  }
+  if (d.getTime() == new Date(2020,2,18).getTime())
+  {//belgium
+    daily_saving+=8.29571;
+  }
+  if (d.getTime() == new Date(2020,2,22).getTime())
+  {//rest
+    daily_saving+=9.93706;
+  }
+  if (d.getTime() == new Date(2020,2,22).getTime())
+  {//india
+    daily_saving+=18.23594;
+  }
+  if (d.getTime() == new Date(2020,2,28).getTime())
+  {//USA
+    //console.log("USA joins")
+    daily_saving+=128.98866;
+  }
+  if (d.getTime() == new Date(2020,2,20).getTime())
+  {//china leaves
+    //console.log("china leaves")
+    daily_saving-=57.31496;
+  }
+  i = i+daily_saving/3399;
+}
+{/*
+renderTableData() {
+  return data.map((student, index) => {
+     const { country, daily, start_date, end_date} = cpuntry //destructuring
+     return (
+        <tr>
+           <td>{country}</td>
+           <td>{daily}</td>
+           <td>{start_date}</td>
+           <td>{end_date}</td>
+           <td>{(end_date-start_date)*daily}</td>
+        </tr>
+     )
+  })
+}
+*/}
+
 function Home() {
+
+
   return (
-    <SiteWrapper>
-      <Page.Content title="Dashboard">
+    
+      <Page.Content title="Dexler Energy">
         <Grid.Row cards={true}>
           <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard layout={1} movement={6} total="43" label="New Tickets" />
+            <StatsCard layout={1} movement={6} total="15%" label="GDP Loss" />
           </Grid.Col>
           <Grid.Col width={6} sm={4} lg={2}>
             <StatsCard
               layout={1}
               movement={-3}
-              total="17"
-              label="Closed Today"
+              total="33.99 GT"
+              label="Expected Carbon Emission"
             />
           </Grid.Col>
           <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard layout={1} movement={9} total="7" label="New Replies" />
+            <StatsCard layout={1} movement={9} total="183" label="Days Since COVID-19" />
           </Grid.Col>
           <Grid.Col width={6} sm={4} lg={2}>
             <StatsCard
               layout={1}
               movement={3}
-              total="27.3k"
-              label="Followers"
+              total="0.62 GT"
+              label="CO2 Emissions Saved"
             />
           </Grid.Col>
           <Grid.Col width={6} sm={4} lg={2}>
             <StatsCard
               layout={1}
               movement={-2}
-              total="$95"
-              label="Daily earnings"
+              total="1.82%"
+              label="Savings out of Total"
             />
           </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
+          {/*<Grid.Col width={6} sm={4} lg={2}>
             <StatsCard layout={1} movement={-1} total="621" label="Products" />
-          </Grid.Col>
-          <Grid.Col lg={6}>
+  </Grid.Col>*/}
+  <Grid.Col lg={12}>
             <Card>
               <Card.Header>
                 <Card.Title>Development Activity</Card.Title>
@@ -71,17 +155,13 @@ function Home() {
               <C3Chart
                 style={{ height: "10rem" }}
                 data={{
-                  columns: [
-                    // each columns data
-                    [
-                      "data1",
-                      0,
-                      5,
-                      1,
-                      2,
-                      7,
-                      5,
-                      6,
+                  columns: [v],
+                      /*v[1],
+                      v[2],
+                      v[3],
+                      v[4],
+                      v[5],
+                      v[6],
                       8,
                       24,
                       7,
@@ -99,9 +179,9 @@ function Home() {
                       14,
                       47,
                       65,
-                      55,
-                    ],
-                  ],
+                      55,*/
+                    
+                  
                   type: "area", // default type of chart
                   groups: [["data1", "data2", "data3"]],
                   colors: {
@@ -109,7 +189,7 @@ function Home() {
                   },
                   names: {
                     // name of each serie
-                    data1: "Purchases",
+                    data1: "CO2 savings",
                   },
                 }}
                 axis={{
@@ -155,33 +235,22 @@ function Home() {
                 point={{
                   show: false,
                 }}
-              />
-              <Table
-                cards={true}
-                striped={true}
-                responsive={true}
-                className="table-vcenter"
-              >
-                <Table.Header>
-                  <Table.Row>
-                    <Table.ColHeader colSpan={2}>User</Table.ColHeader>
-                    <Table.ColHeader>Commit</Table.ColHeader>
-                    <Table.ColHeader>Date</Table.ColHeader>
-                    <Table.ColHeader />
-                  </Table.Row>
-                </Table.Header>
-                <Table.Body>
+              />  
+             
+              
+                  {table()}
+                  {/*
                   <Table.Row>
                     <Table.Col className="w-1">
                       <Avatar imageURL="./demo/faces/male/9.jpg" />
                     </Table.Col>
-                    <Table.Col>Ronald Bradley</Table.Col>
-                    <Table.Col>Initial commit</Table.Col>
-                    <Table.Col className="text-nowrap">May 6, 2018</Table.Col>
-                    <Table.Col className="w-1">
-                      <Icon link={true} name="trash" />
-                    </Table.Col>
-                  </Table.Row>
+                    
+                    <Table.Col>China</Table.Col>
+                    <Table.Col>57.3</Table.Col>
+                    <Table.Col className="text-nowrap">Jan 14, 2019</Table.Col>
+                    <Table.Col className="text-nowrap">20</Table.Col>
+                    <Table.Col className="text-nowrap">{57.3*20}</Table.Col>
+                      </Table.Row>
                   <Table.Row>
                     <Table.Col>
                       <Avatar>BM</Avatar>
@@ -230,12 +299,20 @@ function Home() {
                       <Icon link={true} name="trash" />
                     </Table.Col>
                   </Table.Row>
+                 
                 </Table.Body>
               </Table>
+               */}
             </Card>
           </Grid.Col>
-
+          <Grid.Row>
+            <Grid.Col>
+            <Card title="World population map" body={<ReactSimpleMap />}/>
+            </Grid.Col>
+          </Grid.Row>
+          {/*
           <Grid.Col md={6}>
+          
             <Alert type="primary">
               <Alert.Link
                 href={
@@ -247,8 +324,8 @@ function Home() {
                 Read our documentation
               </Alert.Link>{" "}
               with code samples.
-            </Alert>
-            <Grid.Row>
+              </Alert>*/}
+         {/*<Grid.Row>
               <Grid.Col sm={6}>
                 <Card>
                   <Card.Header>
@@ -351,8 +428,9 @@ function Home() {
                   progressWidth={34}
                 />
               </Grid.Col>
-            </Grid.Row>
+                    </Grid.Row> 
           </Grid.Col>
+          
           <Grid.Col sm={6} lg={3}>
             <StampCard
               color="blue"
@@ -364,7 +442,7 @@ function Home() {
               }
               footer={"12 waiting payments"}
             />
-          </Grid.Col>
+            </Grid.Col>
           <Grid.Col sm={6} lg={3}>
             <StampCard
               color="green"
@@ -376,7 +454,7 @@ function Home() {
               }
               footer={"32 shipped"}
             />
-          </Grid.Col>
+            </Grid.Col>
           <Grid.Col sm={6} lg={3}>
             <StampCard
               color="red"
@@ -388,7 +466,7 @@ function Home() {
               }
               footer={"163 registered today"}
             />
-          </Grid.Col>
+            </Grid.Col>
           <Grid.Col sm={6} lg={3}>
             <StampCard
               color="yellow"
@@ -400,8 +478,9 @@ function Home() {
               }
               footer={"16 waiting"}
             />
-          </Grid.Col>
+            </Grid.Col>*/}
         </Grid.Row>
+        {/*
         <Grid.Row cards deck>
           <Grid.Col width={12}>
             <Card>
@@ -505,6 +584,8 @@ function Home() {
             </Card>
           </Grid.Col>
         </Grid.Row>
+                      */}
+        {/*
         <Grid.Row>
           <Grid.Col sm={6} lg={4}>
             <Card title="Browser Stats">
@@ -917,8 +998,9 @@ function Home() {
             </Card>
           </Grid.Col>
         </Grid.Row>
+              */}
       </Page.Content>
-    </SiteWrapper>
+    
   );
 }
 

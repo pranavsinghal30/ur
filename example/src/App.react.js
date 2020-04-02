@@ -1,6 +1,8 @@
 import * as React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {
+import "tabler-react/dist/Tabler.css";
+import HomePage from "./HomePage.react";
+{/*import {
   ForgotPasswordPage,
   LoginPage,
   RegisterPage,
@@ -13,9 +15,9 @@ import {
   Empty,
   Email,
   ProfilePage,
-} from "./pages";
+} from "./pages";*/}
 
-import HomePage from "./HomePage.react";
+{/*
 import FormElementsPage from "./FormElementsPage.react";
 import PricingCardsPage from "./interface/PricingCardsPage.react";
 import CardsDesignPage from "./interface/CardsDesignPage.react";
@@ -25,8 +27,7 @@ import ChartsPage from "./interface/ChartsPage.react";
 import GalleryPage from "./GalleryPage.react";
 import MapCardsPage from "./components/MapCardsPage.react";
 import BlogPage from "./components/BlogPage.react";
-
-import "tabler-react/dist/Tabler.css";
+*/}
 
 type Props = {||};
 
@@ -36,7 +37,7 @@ function App(props: Props): React.Node {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/400" component={Error400} />
+          {/*<Route exact path="/400" component={Error400} />
           <Route exact path="/401" component={Error401} />
           <Route exact path="/403" component={Error403} />
           <Route exact path="/404" component={Error404} />
@@ -57,7 +58,7 @@ function App(props: Props): React.Node {
           <Route exact path="/profile" component={ProfilePage} />
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/store" component={StoreCardsPage} />
-          <Route component={Error404} />
+  <Route component={Error404} />*/}
         </Switch>
       </Router>
     </React.StrictMode>
