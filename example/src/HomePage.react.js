@@ -301,7 +301,7 @@ function Home() {
           </Card>
         </Grid.Col>
         <Grid.Row>
-          <Grid.Col width={6} lg={12}>
+          <Grid.Col>
             <Card title="World population map" body={<ReactSimpleMap />} />
           </Grid.Col>
         </Grid.Row>
