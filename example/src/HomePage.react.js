@@ -24,73 +24,75 @@ import {
 } from "tabler-react";
 
 import C3Chart from "react-c3js";
-
+//import c3 from "react-c3js";
 import SiteWrapper from "./SiteWrapper.react";
+import { list } from "postcss";
+import reactC3js from "react-c3js";
 
 var today = new Date();
-var arr = [];
+var arr = ["data2"];
 var v = ["data1"];
 var daily_saving = 0;
 var i = 0;
 
 //console.log(new Date(2020,0,20))
-for (var d = new Date(2020,0,14);d <= today ;d.setDate(d.getDate()+1))
-{
-  arr.push(d.getDate()+"/"+d.getMonth());
+for (var d = new Date(2020, 0, 14); d <= today; d.setDate(d.getDate() + 1)) {
+  arr.push(d);
   v.push(i);
   //console.log(d)
   //console.log(d.getTime() == new Date(2020,0,20).getTime())
-  
-  if (d.getTime() == new Date(2020,0,20).getTime())
-  {//china
-    daily_saving+=57.31496;
+
+  if (d.getTime() == new Date(2020, 0, 20).getTime()) {
+    //china
+    daily_saving += 5731496;
     //console.log("in side china")
   }
-  if (d.getTime() == new Date(2020,2,9).getTime())
-  { // Italy
-    daily_saving+=3.09127;
+  if (d.getTime() == new Date(2020, 2, 9).getTime()) {
+    // Italy
+    daily_saving += 309127;
   }
-  if (d.getTime() == new Date(2020,2,14).getTime())
-  {//spain
-    daily_saving+=2.39046;
-  }  
-  if (d.getTime() == new Date(2020,2,17).getTime())
-  {//france
-    daily_saving+=3.33728;
+  if (d.getTime() == new Date(2020, 2, 14).getTime()) {
+    //spain
+    daily_saving += 239046;
   }
-  if (d.getTime() == new Date(2020,2,22).getTime())
-  {//germany
-    daily_saving+=4.28368;
+  if (d.getTime() == new Date(2020, 2, 17).getTime()) {
+    //france
+    daily_saving += 333728;
   }
-  if (d.getTime() == new Date(2020,2,23).getTime())
-  {//UK
-    daily_saving+=3.40751;
+  if (d.getTime() == new Date(2020, 2, 22).getTime()) {
+    //germany
+    daily_saving += 428368;
   }
-  if (d.getTime() == new Date(2020,2,18).getTime())
-  {//belgium
-    daily_saving+=8.29571;
+  if (d.getTime() == new Date(2020, 2, 23).getTime()) {
+    //UK
+    daily_saving += 340751;
   }
-  if (d.getTime() == new Date(2020,2,22).getTime())
-  {//rest
-    daily_saving+=9.93706;
+  if (d.getTime() == new Date(2020, 2, 18).getTime()) {
+    //belgium
+    daily_saving += 829571;
   }
-  if (d.getTime() == new Date(2020,2,22).getTime())
-  {//india
-    daily_saving+=18.23594;
+  if (d.getTime() == new Date(2020, 2, 22).getTime()) {
+    //rest
+    daily_saving += 993706;
   }
-  if (d.getTime() == new Date(2020,2,28).getTime())
-  {//USA
+  if (d.getTime() == new Date(2020, 2, 22).getTime()) {
+    //india
+    daily_saving += 1823594;
+  }
+  if (d.getTime() == new Date(2020, 2, 28).getTime()) {
+    //USA
     //console.log("USA joins")
-    daily_saving+=128.98866;
+    daily_saving += 12898866;
   }
-  if (d.getTime() == new Date(2020,2,20).getTime())
-  {//china leaves
+  if (d.getTime() == new Date(2020, 2, 20).getTime()) {
+    //china leaves
     //console.log("china leaves")
-    daily_saving-=57.31496;
+    daily_saving -= 5731496;
   }
-  i = i+daily_saving/3399;
+  i = i + daily_saving / 339900000;
 }
-{/*
+{
+  /*
 renderTableData() {
   return data.map((student, index) => {
      const { country, daily, start_date, end_date} = cpuntry //destructuring
@@ -105,141 +107,134 @@ renderTableData() {
      )
   })
 }
-*/}
-
+*/
+}
+var estimation = 33.99;
+const style = {
+  position: "absolute",
+  top: 0, // computed based on child and parent's height
+  right: 40,
+  fontSize: 28,
+  textAlign: "center",
+  fontWeight: "bold",
+  fontstyle: "italic",
+};
 function Home() {
-
-
   return (
-    
-      <Page.Content title="Dexler Energy">
-        <Grid.Row cards={true}>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard layout={1} movement={6} total="15%" label="GDP Loss" />
-          </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard
-              layout={1}
-              movement={-3}
-              total="33.99 GT"
-              label="Expected Carbon Emission"
-            />
-          </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard layout={1} movement={9} total="183" label="Days Since COVID-19" />
-          </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard
-              layout={1}
-              movement={3}
-              total="0.62 GT"
-              label="CO2 Emissions Saved"
-            />
-          </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard
-              layout={1}
-              movement={-2}
-              total="1.82%"
-              label="Savings out of Total"
-            />
-          </Grid.Col>
-          {/*<Grid.Col width={6} sm={4} lg={2}>
+    <Page.Content title="Dexler Energy">
+      <a href="http://www.dexlerenergy.com/" style={style}>
+        Visit Us
+      </a>
+
+      <Grid.Row cards={true}>
+        <Grid.Col width={5} sm={4} lg={2}>
+          <StatsCard layout={1} movement={-15} total="15%" label="GDP Loss" />
+        </Grid.Col>
+        <Grid.Col width={5} sm={6} lg={2}>
+          <StatsCard
+            layout={1}
+            movement={3}
+            total={estimation + " GT"}
+            label="Expected Carbon Emission"
+          />
+        </Grid.Col>
+        <Grid.Col width={5} sm={6} lg={2}>
+          <StatsCard
+            layout={1}
+            movement={(100 / 365).toFixed(2)}
+            total={parseInt(
+              (new Date() - new Date(2019, 9, 1)) / (1000 * 60 * 60 * 24)
+            )}
+            label="Days Since COVID-19"
+          />
+        </Grid.Col>
+        <Grid.Col width={5} sm={4} lg={2}>
+          <StatsCard
+            layout={1}
+            movement={(
+              ((v[v.length - 1] - v[v.length - 2]) * 100) /
+              v[v.length - 1]
+            ).toFixed(2)}
+            total={((estimation * v[v.length - 1]) / 100).toFixed(2) + " GT"}
+            label="CO2 Emissions Saved"
+          />
+        </Grid.Col>
+        <Grid.Col width={5} sm={4} lg={2}>
+          <StatsCard
+            layout={1}
+            movement={(
+              ((v[v.length - 1] - v[v.length - 2]) * 100) /
+              v[v.length - 1]
+            ).toFixed(2)}
+            total={v[v.length - 1].toFixed(2) + " %"}
+            label="Savings out of Total"
+          />
+        </Grid.Col>
+        {/*<Grid.Col width={6} sm={4} lg={2}>
             <StatsCard layout={1} movement={-1} total="621" label="Products" />
   </Grid.Col>*/}
-  <Grid.Col lg={12}>
-            <Card>
-              <Card.Header>
-                <Card.Title>Development Activity</Card.Title>
-              </Card.Header>
-              <C3Chart
-                style={{ height: "10rem" }}
-                data={{
-                  columns: [v],
-                      /*v[1],
-                      v[2],
-                      v[3],
-                      v[4],
-                      v[5],
-                      v[6],
-                      8,
-                      24,
-                      7,
-                      12,
-                      5,
-                      6,
-                      3,
-                      2,
-                      2,
-                      6,
-                      30,
-                      10,
-                      10,
-                      15,
-                      14,
-                      47,
-                      65,
-                      55,*/
-                    
-                  
-                  type: "area", // default type of chart
-                  groups: [["data1", "data2", "data3"]],
-                  colors: {
-                    data1: colors["blue"],
+        <Grid.Col lg={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>Development Activity</Card.Title>
+            </Card.Header>
+            <C3Chart
+              style={{ height: "10rem" }}
+              data={{
+                columns: [v],
+                type: "area", // default type of chart
+                groups: [["data1", "data2", "data3"]],
+                colors: {
+                  data1: colors["green"],
+                },
+                names: {
+                  // name of each serie
+                  data1: "CO2 savings",
+                },
+                axes: { data1: "y2", data2: "x1" },
+              }}
+              axis={{
+                y: {
+                  show: true,
+                },
+                x: {
+                  tick: { format: "%d/%m" },
+                  padding: {
+                    left: 0,
+                    right: 0,
                   },
-                  names: {
-                    // name of each serie
-                    data1: "CO2 savings",
+                  show: true,
+                },
+              }}
+              legend={{
+                position: "inset",
+                padding: 0,
+                inset: {
+                  anchor: "top-left",
+                  x: 20,
+                  y: 8,
+                  step: 10,
+                },
+              }}
+              tooltip={{
+                format: {
+                  title: function(x) {
+                    return "";
                   },
-                }}
-                axis={{
-                  y: {
-                    padding: {
-                      bottom: 0,
-                    },
-                    show: false,
-                    tick: {
-                      outer: false,
-                    },
-                  },
-                  x: {
-                    padding: {
-                      left: 0,
-                      right: 0,
-                    },
-                    show: false,
-                  },
-                }}
-                legend={{
-                  position: "inset",
-                  padding: 0,
-                  inset: {
-                    anchor: "top-left",
-                    x: 20,
-                    y: 8,
-                    step: 10,
-                  },
-                }}
-                tooltip={{
-                  format: {
-                    title: function(x) {
-                      return "";
-                    },
-                  },
-                }}
-                padding={{
-                  bottom: 0,
-                  left: -1,
-                  right: -1,
-                }}
-                point={{
-                  show: false,
-                }}
-              />  
-             
-              
-                  {table()}
-                  {/*
+                },
+              }}
+              padding={{
+                bottom: 0,
+                left: -1,
+                right: -1,
+              }}
+              point={{
+                show: false,
+              }}
+            />
+
+            {table()}
+            {/*
                   <Table.Row>
                     <Table.Col className="w-1">
                       <Avatar imageURL="./demo/faces/male/9.jpg" />
@@ -303,14 +298,14 @@ function Home() {
                 </Table.Body>
               </Table>
                */}
-            </Card>
+          </Card>
+        </Grid.Col>
+        <Grid.Row>
+          <Grid.Col width={6} lg={12}>
+            <Card title="World population map" body={<ReactSimpleMap />} />
           </Grid.Col>
-          <Grid.Row>
-            <Grid.Col>
-            <Card title="World population map" body={<ReactSimpleMap />}/>
-            </Grid.Col>
-          </Grid.Row>
-          {/*
+        </Grid.Row>
+        {/*
           <Grid.Col md={6}>
           
             <Alert type="primary">
@@ -325,7 +320,7 @@ function Home() {
               </Alert.Link>{" "}
               with code samples.
               </Alert>*/}
-         {/*<Grid.Row>
+        {/*<Grid.Row>
               <Grid.Col sm={6}>
                 <Card>
                   <Card.Header>
@@ -479,8 +474,8 @@ function Home() {
               footer={"16 waiting"}
             />
             </Grid.Col>*/}
-        </Grid.Row>
-        {/*
+      </Grid.Row>
+      {/*
         <Grid.Row cards deck>
           <Grid.Col width={12}>
             <Card>
@@ -585,7 +580,7 @@ function Home() {
           </Grid.Col>
         </Grid.Row>
                       */}
-        {/*
+      {/*
         <Grid.Row>
           <Grid.Col sm={6} lg={4}>
             <Card title="Browser Stats">
@@ -999,8 +994,7 @@ function Home() {
           </Grid.Col>
         </Grid.Row>
               */}
-      </Page.Content>
-    
+    </Page.Content>
   );
 }
 
