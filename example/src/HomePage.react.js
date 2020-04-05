@@ -135,7 +135,7 @@ function Home() {
         <img className = "header-brand-img" src = {logo} width = {5}/>
         </a>
         </Grid.Col>
-        <Grid.Col width = {10} sm = {8} lg = {1}>        <Card ></Card></Grid.Col>
+        <Grid.Col width = {1} sm = {1} lg = {1}>        <Card ></Card></Grid.Col>
 
         
 
