@@ -148,9 +148,8 @@ class ReactSimpleMap extends React.PureComponent<void, State> {
         geography.properties.name +
         ": " +
         (mydata.find(s => s.name == geography.properties.name)
-          ? calc(mydata.find(s => s.name == geography.properties.name))
-          : "NA") +
-        " MT",
+          ? calc(mydata.find(s => s.name == geography.properties.name))+" MT"
+          : "NA"),
     });
   };
 

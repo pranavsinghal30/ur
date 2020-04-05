@@ -3,7 +3,7 @@
 import * as React from "react";
 import ReactSimpleMap from "./ReactSimpleMap";
 import table from "./table";
-
+import logo from "./Picture5.png";
 import {
   Page,
   Avatar,
@@ -119,16 +119,49 @@ const style = {
   fontWeight: "bold",
   fontstyle: "italic",
 };
+const style1 = {
+  height:100,
+  width:200,
+
+  backgroundColor : 'rgba(0,0,0,0)'
+};
 function Home() {
   return (
-    <Page.Content title="Dexler Energy">
+    <Page.Content title="">
+      <Grid.Row cards = {true}>
+      <Grid.Col>
+        
+        <a className = "header-brand" href="http://www.dexlerenergy.com/" style={style1} >
+        <img className = "header-brand-img" src = {logo} width = {5}/>
+        </a>
+        </Grid.Col>
+        <Grid.Col width = {10} sm = {8} lg = {1}>        <Card ></Card></Grid.Col>
+
+        
+
+
+      
+      <Grid.Col>
       <a href="http://www.dexlerenergy.com/" style={style}>
         Visit Us
       </a>
+      </Grid.Col>
+      </Grid.Row>
 
+      <Grid.Row card = {true}>
+
+      </Grid.Row>
       <Grid.Row cards={true}>
-        <Grid.Col width={5} sm={4} lg={2}>
-          <StatsCard layout={1} movement={-15} total="15%" label="GDP Loss" />
+      <Grid.Col width={5} sm={4} lg={2}>
+          <StatsCard
+            layout={1}
+            movement={(
+              ((v[v.length - 1] - v[v.length - 2]) * 100) /
+              v[v.length - 1]
+            ).toFixed(2)}
+            total={((estimation * v[v.length - 1]) / 100).toFixed(2) + " GT"}
+            label="CO2 Emissions Saved"
+          />
         </Grid.Col>
         <Grid.Col width={5} sm={6} lg={2}>
           <StatsCard
@@ -148,17 +181,7 @@ function Home() {
             label="Days Since COVID-19"
           />
         </Grid.Col>
-        <Grid.Col width={5} sm={4} lg={2}>
-          <StatsCard
-            layout={1}
-            movement={(
-              ((v[v.length - 1] - v[v.length - 2]) * 100) /
-              v[v.length - 1]
-            ).toFixed(2)}
-            total={((estimation * v[v.length - 1]) / 100).toFixed(2) + " GT"}
-            label="CO2 Emissions Saved"
-          />
-        </Grid.Col>
+        
         <Grid.Col width={5} sm={4} lg={2}>
           <StatsCard
             layout={1}
@@ -167,12 +190,21 @@ function Home() {
               v[v.length - 1]
             ).toFixed(2)}
             total={v[v.length - 1].toFixed(2) + " %"}
-            label="Savings out of Total"
+            label="Savings as a Percentage"
           />
         </Grid.Col>
         {/*<Grid.Col width={6} sm={4} lg={2}>
             <StatsCard layout={1} movement={-1} total="621" label="Products" />
   </Grid.Col>*/}
+        </Grid.Row>
+        <Grid.Row>
+            
+
+            <Grid.Col lg={12}>
+              <Card title="CO2 Emission Savings" body={<ReactSimpleMap />} />
+            </Grid.Col>
+          </Grid.Row>
+        <Grid.Row>
         <Grid.Col lg={12}>
           <Card>
             <Card.Header>
@@ -234,77 +266,9 @@ function Home() {
             />
 
             {table()}
-            {/*
-                  <Table.Row>
-                    <Table.Col className="w-1">
-                      <Avatar imageURL="./demo/faces/male/9.jpg" />
-                    </Table.Col>
-                    
-                    <Table.Col>China</Table.Col>
-                    <Table.Col>57.3</Table.Col>
-                    <Table.Col className="text-nowrap">Jan 14, 2019</Table.Col>
-                    <Table.Col className="text-nowrap">20</Table.Col>
-                    <Table.Col className="text-nowrap">{57.3*20}</Table.Col>
-                      </Table.Row>
-                  <Table.Row>
-                    <Table.Col>
-                      <Avatar>BM</Avatar>
-                    </Table.Col>
-                    <Table.Col>Russell Gibson</Table.Col>
-                    <Table.Col>Main structure</Table.Col>
-                    <Table.Col className="text-nowrap">
-                      April 22, 2018
-                    </Table.Col>
-                    <Table.Col>
-                      <Icon link={true} name="trash" />
-                    </Table.Col>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Col>
-                      <Avatar imageURL="./demo/faces/female/1.jpg" />
-                    </Table.Col>
-                    <Table.Col>Beverly Armstrong</Table.Col>
-                    <Table.Col>Left sidebar adjustments</Table.Col>
-                    <Table.Col className="text-nowrap">
-                      April 15, 2018
-                    </Table.Col>
-                    <Table.Col>
-                      <Icon link={true} name="trash" />
-                    </Table.Col>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Col>
-                      <Avatar imageURL="./demo/faces/male/4.jpg" />
-                    </Table.Col>
-                    <Table.Col>Bobby Knight</Table.Col>
-                    <Table.Col>Topbar dropdown style</Table.Col>
-                    <Table.Col className="text-nowrap">April 8, 2018</Table.Col>
-                    <Table.Col>
-                      <Icon link={true} name="trash" />
-                    </Table.Col>
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Col>
-                      <Avatar imageURL="./demo/faces/female/11.jpg" />
-                    </Table.Col>
-                    <Table.Col>Sharon Wells</Table.Col>
-                    <Table.Col>Fixes #625</Table.Col>
-                    <Table.Col className="text-nowrap">April 9, 2018</Table.Col>
-                    <Table.Col>
-                      <Icon link={true} name="trash" />
-                    </Table.Col>
-                  </Table.Row>
-                 
-                </Table.Body>
-              </Table>
-               */}
-          </Card>
+            </Card>
         </Grid.Col>
-        <Grid.Row>
-          <Grid.Col>
-            <Card title="World population map" body={<ReactSimpleMap />} />
-          </Grid.Col>
-        </Grid.Row>
+
         {/*
           <Grid.Col md={6}>
           
