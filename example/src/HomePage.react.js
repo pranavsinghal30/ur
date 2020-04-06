@@ -4,6 +4,8 @@ import * as React from "react";
 import ReactSimpleMap from "./ReactSimpleMap";
 import table from "./table";
 import logo from "./Picture5.png";
+import Header from "./Header/Header.react";
+import H3 from "./Header/H3.react";
 import {
   Page,
   Avatar,
@@ -21,13 +23,19 @@ import {
   StatsCard,
   ProgressCard,
   Badge,
+  TabbedCard,
+  PricingCard
 } from "tabler-react";
 
 import C3Chart from "react-c3js";
+//import DownloadLink from "react-download-link";
 //import c3 from "react-c3js";
 import SiteWrapper from "./SiteWrapper.react";
 import { list } from "postcss";
 import reactC3js from "react-c3js";
+
+//import CardFooter from "../../src/components/Card/CardFooter.react";
+//import CardBody from "../../src/components/Card/CardBody.react";
 
 var today = new Date();
 var arr = ["data2"];
@@ -35,6 +43,11 @@ var v = ["data1"];
 var daily_saving = 0;
 var i = 0;
 
+function getDates()
+{
+  d = new Date();
+  return d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+}
 //console.log(new Date(2020,0,20))
 for (var d = new Date(2020, 0, 14); d <= today; d.setDate(d.getDate() + 1)) {
   arr.push(d);
@@ -89,6 +102,11 @@ for (var d = new Date(2020, 0, 14); d <= today; d.setDate(d.getDate() + 1)) {
     //console.log("china leaves")
     daily_saving -= 5731496;
   }
+  if (d.getTime() == new Date(2020,2,22).getTime())
+  {//rest of europe 
+    daily_saving += 13911892;
+
+  }
   i = i + daily_saving / 339900000;
 }
 {
@@ -118,11 +136,13 @@ const style = {
   textAlign: "center",
   fontWeight: "bold",
   fontstyle: "italic",
+  color : "rgb(50,0,133)"
 };
 const style1 = {
-  height:100,
-  width:200,
-
+  fontSize: 25,
+  textAlign: "centre",
+  fontWeight: "bold",
+  color: "rgb(50,0,133)",
   backgroundColor : 'rgba(0,0,0,0)'
 };
 function Home() {
@@ -135,12 +155,7 @@ function Home() {
         <img className = "header-brand-img" src = {logo} width = {5}/>
         </a>
         </Grid.Col>
-        <Grid.Col width = {1} sm = {1} lg = {1}>        <Card ></Card></Grid.Col>
-
-        
-
-
-      
+        <Grid.Col width = {1} sm = {1} lg = {1}> <Card></Card></Grid.Col>     
       <Grid.Col>
       <a href="http://www.dexlerenergy.com/" style={style}>
         Visit Us
@@ -149,49 +164,57 @@ function Home() {
       </Grid.Row>
 
       <Grid.Row card = {true}>
-
+      <Grid.Col width = {12} sm = {12} lg = {12}>
+        <p style = {style1}>Carbon Emission Savings during COVID-19</p>
+      </Grid.Col>
       </Grid.Row>
       <Grid.Row cards={true}>
       <Grid.Col width={5} sm={4} lg={2}>
-          <StatsCard
-            layout={1}
-            movement={(
-              ((v[v.length - 1] - v[v.length - 2]) * 100) /
-              v[v.length - 1]
-            ).toFixed(2)}
-            total={((estimation * v[v.length - 1]) / 100).toFixed(2) + " GT"}
-            label="CO2 Emissions Saved"
-          />
+      <Card>
+          <Card.Status />
+            <Card.Header>
+              <Card.Title>CO2 Emissions Saved</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Header.H1 className="mb-1">{((estimation * v[v.length - 1]) / 100).toFixed(2) + " GT"}</Header.H1>
+            </Card.Body>
+        </Card>
         </Grid.Col>
         <Grid.Col width={5} sm={6} lg={2}>
-          <StatsCard
-            layout={1}
-            movement={3}
-            total={estimation + " GT"}
-            label="Expected Carbon Emission"
-          />
+        <Card>
+          <Card.Status />
+            <Card.Header>
+              <Card.Title>Estimated CO2 emission for the year 2020</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Header.H1 className="mb-1">{estimation}</Header.H1>
+            </Card.Body>
+        </Card>
         </Grid.Col>
         <Grid.Col width={5} sm={6} lg={2}>
-          <StatsCard
-            layout={1}
-            movement={(100 / 365).toFixed(2)}
-            total={parseInt(
-              (new Date() - new Date(2019, 9, 1)) / (1000 * 60 * 60 * 24)
-            )}
-            label="Days Since COVID-19"
-          />
+        <Card>
+      <Card.Status />
+      <Card.Header>
+        <Card.Title>Data Updated On</Card.Title>
+      </Card.Header>
+      <Card.Body>
+      <Header.H1 className="mb-1">{getDates()}</Header.H1>
+      </Card.Body>
+    </Card>
+
         </Grid.Col>
         
         <Grid.Col width={5} sm={4} lg={2}>
-          <StatsCard
-            layout={1}
-            movement={(
-              ((v[v.length - 1] - v[v.length - 2]) * 100) /
-              v[v.length - 1]
-            ).toFixed(2)}
-            total={v[v.length - 1].toFixed(2) + " %"}
-            label="Savings as a Percentage"
-          />
+        <Card>
+          <Card.Status />
+            <Card.Header>
+              <Card.Title>Percentage of Total Estimate Saved</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Header.H1 className="mb-1">{v[v.length - 1].toFixed(2) + " %"}</Header.H1>
+            </Card.Body>
+        </Card>
+          
         </Grid.Col>
         {/*<Grid.Col width={6} sm={4} lg={2}>
             <StatsCard layout={1} movement={-1} total="621" label="Products" />
