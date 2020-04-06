@@ -70,6 +70,7 @@
     "prettier": "1.17.1",
     "pretty-quick": "^1.6.0",
     "react": "^16.2.0",
+    "react-dfb": "^1.0.4",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
     "react-styleguidist": "^11.0.5",

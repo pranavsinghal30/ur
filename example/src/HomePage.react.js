@@ -47,7 +47,7 @@ var i = 0;
 function getDates()
 {
   d = new Date();
-  return d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear();
+  return d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
 }
 //console.log(new Date(2020,0,20))
 for (var d = new Date(2020, 0, 14); d <= today; d.setDate(d.getDate() + 1)) {
@@ -58,7 +58,7 @@ for (var d = new Date(2020, 0, 14); d <= today; d.setDate(d.getDate() + 1)) {
 
   if (d.getTime() == new Date(2020, 0, 20).getTime()) {
     //china
-    daily_saving += 5731496;
+    daily_saving += 5731496*0.85;
     //console.log("in side china")
   }
   if (d.getTime() == new Date(2020, 2, 9).getTime()) {
@@ -83,33 +83,37 @@ for (var d = new Date(2020, 0, 14); d <= today; d.setDate(d.getDate() + 1)) {
   }
   if (d.getTime() == new Date(2020, 2, 18).getTime()) {
     //belgium
-    daily_saving += 829571;
-  }
-  if (d.getTime() == new Date(2020, 2, 22).getTime()) {
-    //rest
-    daily_saving += 993706;
+    daily_saving += 59255;
   }
   if (d.getTime() == new Date(2020, 2, 22).getTime()) {
     //india
-    daily_saving += 1823594;
+    daily_saving += 1823594*0.85;
   }
   if (d.getTime() == new Date(2020, 2, 28).getTime()) {
     //USA
     //console.log("USA joins")
-    daily_saving += 12898866;
+    daily_saving += 12898866*0.40;
   }
   if (d.getTime() == new Date(2020, 2, 20).getTime()) {
     //china leaves
     //console.log("china leaves")
-    daily_saving -= 5731496;
+    daily_saving -= 5731496*0.85;
+    daily_saving += 5731496*0.40;
   }
   if (d.getTime() == new Date(2020,2,22).getTime())
   {//rest of europe 
-    daily_saving += 13911892;
+    daily_saving += 993706;
 
   }
-  i = i + daily_saving / 339900000;
+  if (d.getTime() == new Date(2020,2,20).getTime())
+  {//Japan
+    daily_saving += 981746*0.4;
+
+  }
+  
+  i = i + daily_saving;
 }
+v.push(i)
 {
   /*
 renderTableData() {
@@ -128,7 +132,7 @@ renderTableData() {
 }
 */
 }
-var estimation = 33.99;
+var estimation = 33990000000;
 const style = {
   position: "absolute",
   top: 0, // computed based on child and parent's height
@@ -148,6 +152,7 @@ const style1 = {
 };
 function Home() {
   return (
+    <SiteWrapper>
     <Page.Content title="">
 
       <Grid.Row cards = {true}>
@@ -178,7 +183,7 @@ function Home() {
               <Card.Title>CO2 Emissions Saved</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-1">{((estimation * v[v.length - 1]) / 100).toFixed(2) + " GT"}</Header.H1>
+              <Header.H1 className="mb-1">{((v[v.length - 1])).toLocaleString(navigator.language,{ minimumFractionDigits: 0 }) + " MT"}</Header.H1>
             </Card.Body>
         </Card>
         </Grid.Col>
@@ -189,7 +194,7 @@ function Home() {
               <Card.Title>Estimated CO2 emission for the year 2020</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-1">{estimation+" GT"}</Header.H1>
+              <Header.H1 className="mb-1">{estimation.toLocaleString(navigator.language,{ minimumFractionDigits: 0 })+" MT"}</Header.H1>
             </Card.Body>
         </Card>
         </Grid.Col>
@@ -213,7 +218,7 @@ function Home() {
               <Card.Title>Percentage of Total Estimate Saved</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-1">{v[v.length - 1].toFixed(2) + " %"}</Header.H1>
+              <Header.H1 className="mb-1">{(v[v.length - 1]*100/estimation).toFixed(2) + " %"}</Header.H1>
             </Card.Body>
         </Card>
           
@@ -984,6 +989,7 @@ function Home() {
         </Grid.Row>
               */}
     </Page.Content>
+  </SiteWrapper>
   );
 }
 
