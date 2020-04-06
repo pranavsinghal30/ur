@@ -49,7 +49,7 @@ const mydata = [
   },
   {
     name: "Japan",
-    daily: "0",
+    daily: 984716,
     start_date: new Date(2020, 1, 14),
     end_date: new Date(),
     Total_Saved: 0,

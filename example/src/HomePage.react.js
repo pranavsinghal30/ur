@@ -5,7 +5,8 @@ import ReactSimpleMap from "./ReactSimpleMap";
 import table from "./table";
 import logo from "./Picture5.png";
 import Header from "./Header/Header.react";
-import H3 from "./Header/H3.react";
+
+
 import {
   Page,
   Avatar,
@@ -148,6 +149,7 @@ const style1 = {
 function Home() {
   return (
     <Page.Content title="">
+
       <Grid.Row cards = {true}>
       <Grid.Col>
         
