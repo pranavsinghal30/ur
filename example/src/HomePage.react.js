@@ -187,7 +187,7 @@ function Home() {
               <Card.Title>Estimated CO2 emission for the year 2020</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-1">{estimation}</Header.H1>
+              <Header.H1 className="mb-1">{estimation+" GT"}</Header.H1>
             </Card.Body>
         </Card>
         </Grid.Col>
