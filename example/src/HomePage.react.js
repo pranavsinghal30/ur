@@ -37,22 +37,69 @@ import reactC3js from "react-c3js";
 
 //import CardFooter from "../../src/components/Card/CardFooter.react";
 //import CardBody from "../../src/components/Card/CardBody.react";
+const  mydata = [
+  {country : "China", daily : 5731496, start_date : new Date(2020,0,20),end_date : new Date(2020,2,20),Total_Saved : 0,optimum_start:new Date(2020,2,20),optimum_end:new Date()},
+  {country : "India", daily : 1823594, start_date : new Date(2020,2,22),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+  {country : "USA", daily : 12898866, start_date : new Date(),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(2020,2,20),optimum_end:new Date()},
+  {country : "Japan", daily : 981746, start_date : new Date(),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(2020,2,20),optimum_end:new Date()},
+  {country : "Italy", daily : 309127/0.85, start_date : new Date(2020,2,9),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+  {country : "Spain", daily : 239046/0.85, start_date : new Date(2020,2,14),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+  {country : "France", daily : 333728/0.85, start_date : new Date(2020,2,17),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+  {country : "Germany", daily : 428368/0.85, start_date : new Date(2020,2,22),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+  {country : "UK", daily : 340751/0.85, start_date : new Date(2020,2,23),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+  {country : "Belgium", daily :59255/0.85, start_date : new Date(2020,2,18),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+  {country : "Rest OF Europe", daily : 993706/0.4, start_date : new Date(),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(2020,2,22),optimum_end:new Date()}
+]
 
 var today = new Date();
 var arr = ["data2"];
 var v = ["data1"];
 var daily_saving = 0;
 var i = 0;
-
+var da_sa = [];
 function getDates()
 {
   d = new Date();
   return d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
 }
+var st ;
 //console.log(new Date(2020,0,20))
 for (var d = new Date(2020, 0, 14); d <= today; d.setDate(d.getDate() + 1)) {
   arr.push(d);
   v.push(i);
+  st = 0;
+  mydata.forEach(function(p) {
+    var lock =0;
+    var opt =0;
+
+    if (p['end_date'].getTime() >= d.getTime() && p['start_date'].getTime()<= d.getTime())
+    { lock = ((d-p['start_date'])/(1000*60*60*24))*p['daily']*0.85}
+    else if (p['end_date'].getTime() < d.getTime())
+    {
+      lock = ((p['end_date']-p['start_date'])/(1000*60*60*24))*p['daily']*0.85
+    }
+    else if (p['start_date'].getTime() > d.getTime())
+    {
+      lock = 0
+    }
+    if (p['optimum_end'].getTime() >= d.getTime() && p['optimum_start'].getTime()<= d.getTime())
+    { opt= ((d-p['optimum_start'])/(1000*60*60*24))*p['daily']*0.4}
+    else if (p['end_date'].getTime() < d.getTime())
+    {
+      opt = ((p['optimum_end']-p['optimum_start'])/(1000*60*60*24))*p['daily']*0.4
+    }
+    else if (p['optimum_start'].getTime() > d.getTime())
+    {
+      opt = 0
+    }
+    p['Total_Saved']+=(lock+opt)
+    console.log(p['country']+p['Total_Saved'])
+    st += lock+opt 
+    
+  });
+  da_sa.push(st)
+  console.log("date"+d+" "+st)
+  
   //console.log(d)
   //console.log(d.getTime() == new Date(2020,0,20).getTime())
 
@@ -153,28 +200,8 @@ const style1 = {
 function Home() {
   return (
     <SiteWrapper>
-    <Page.Content title="">
+    <Page.Content title="Carbon Emission Savings during COVID-19">
 
-      <Grid.Row cards = {true}>
-      <Grid.Col>
-        
-        <a className = "header-brand" href="http://www.dexlerenergy.com/" style={style1} >
-        <img className = "header-brand-img" src = {logo} width = {5}/>
-        </a>
-        </Grid.Col>
-        <Grid.Col width = {1} sm = {1} lg = {1}> <Card></Card></Grid.Col>     
-      <Grid.Col>
-      <a href="http://www.dexlerenergy.com/" style={style}>
-        Visit Us
-      </a>
-      </Grid.Col>
-      </Grid.Row>
-
-      <Grid.Row card = {true}>
-      <Grid.Col width = {12} sm = {12} lg = {12}>
-        <p style = {style1}>Carbon Emission Savings during COVID-19</p>
-      </Grid.Col>
-      </Grid.Row>
       <Grid.Row cards={true}>
       <Grid.Col width={6} sm={6} lg={6}>
       <Card>
@@ -183,7 +210,7 @@ function Home() {
               <Card.Title>CO2 Emissions Saved</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-1">{((v[v.length - 1])).toLocaleString(navigator.language,{ minimumFractionDigits: 0 }) + " MT"}</Header.H1>
+              <Header.H1 className="mb-1">{((da_sa[da_sa.length - 1])).toLocaleString(navigator.language,{ minimumFractionDigits: 0 }) + " MT"}</Header.H1>
             </Card.Body>
         </Card>
         </Grid.Col>
@@ -218,7 +245,7 @@ function Home() {
               <Card.Title>Percentage of Total Estimate Saved</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-1">{(v[v.length - 1]*100/estimation).toFixed(2) + " %"}</Header.H1>
+              <Header.H1 className="mb-1">{(da_sa[da_sa.length - 1]*100/estimation).toFixed(2) + " %"}</Header.H1>
             </Card.Body>
         </Card>
           

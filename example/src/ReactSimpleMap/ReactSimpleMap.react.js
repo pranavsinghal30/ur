@@ -9,93 +9,52 @@ import {
 import data from "./data/world-50m.json";
 import { scaleLinear } from "d3-scale";
 
-function value(p, k) {
-  if (k == "end_date") {
-    return parseInt((p[k] - p["start_date"]) / (1000 * 60 * 60 * 24));
-  } else if (k == "start_date") {
-    return p[k].getDate() + "/" + p[k].getMonth();
-  } else if (k == "Total_Saved") {
-    return (
-      parseInt((p["end_date"] - p["start_date"]) / (1000 * 60 * 60 * 24)) *
-      p["daily"]
-    );
-  } else {
-    return p[k].toString();
+function value(p,k)
+  {
+   if (k == 'end_date')
+   {
+       return parseInt((p[k]-p['start_date'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
+   } 
+   else if ( k == 'start_date')
+   {  console.log(p['country']+(p['start_date'].getTime()==(new Date().getTime())))
+       if ((p['start_date'].getTime()) == (new Date().getTime()))
+       {console.log("inside if ")
+         return p['optimum_start'].getDate()+"/"+(p['optimum_start'].getMonth()+1)}
+       
+       return p[k].getDate()+"/"+(p[k].getMonth()+1)
+   }
+   else if ( k == 'Total_Saved')
+   {
+       return ((((p['end_date']-p['start_date'])/(1000*60*60*24))*p['daily']*0.85)+(((p['optimum_end']-p['optimum_start'])/(1000*60*60*24))*p['daily']*0.4)).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
+   }
+   else if (k == 'daily')
+   {
+     return (p[k]).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
+   }
+   else if (k == 'optimum_start' || k == 'optimum_end')
+   {
+     return ""
+   }
+   else 
+   {
+       return p[k].toString()
+   }
   }
-}
 var max = 0;
 var min = Number.MAX_VALUE;
 const mydata = [
-  {
-    name: "China",
-    daily: 5731456,
-    start_date: new Date(2020, 1, 14),
-    end_date: new Date(2020, 2, 20),
-    Total_Saved: 0,
-  },
-  {
-    name: "India",
-    daily: 1823594,
-    start_date: new Date(2020, 2, 22),
-    end_date: new Date(),
-    Total_Saved: 0,
-  },
-  {
-    name: "United States",
-    daily: 12898866,
-    start_date: new Date(2020, 2, 28),
-    end_date: new Date(),
-    Total_Saved: 0,
-  },
-  {
-    name: "Japan",
-    daily: 984716,
-    start_date: new Date(2020, 1, 14),
-    end_date: new Date(),
-    Total_Saved: 0,
-  },
-  {
-    name: "Italy",
-    daily: 309127,
-    start_date: new Date(2020, 2, 9),
-    end_date: new Date(),
-    Total_Saved: 0,
-  },
-  {
-    name: "Spain",
-    daily: 239046,
-    start_date: new Date(2020, 2, 14),
-    end_date: new Date(),
-    Total_Saved: 0,
-  },
-  {
-    name: "France",
-    daily: 333728,
-    start_date: new Date(2020, 2, 17),
-    end_date: new Date(),
-    Total_Saved: 0,
-  },
-  {
-    name: "Germany",
-    daily: 428368,
-    start_date: new Date(2020, 2, 22),
-    end_date: new Date(),
-    Total_Saved: 0,
-  },
-  {
-    name: "United Kingdom",
-    daily: 340751,
-    start_date: new Date(2020, 2, 23),
-    end_date: new Date(),
-    Total_Saved: 0,
-  },
-  {
-    name: "Belgium",
-    daily: 829571,
-    start_date: new Date(2020, 1, 14),
-    end_date: new Date(),
-    Total_Saved: 0,
-  },
+
+    {name : "China", daily : 5731496, start_date : new Date(2020,0,20),end_date : new Date(2020,2,20),Total_Saved : 0,optimum_start:new Date(2020,2,20),optimum_end:new Date()},
+    {name : "India", daily : 1823594, start_date : new Date(2020,2,22),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+    {name : "United States", daily : 12898866, start_date : new Date(),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(2020,2,20),optimum_end:new Date()},
+    {name : "Japan", daily : 981746, start_date : new Date(),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(2020,2,20),optimum_end:new Date()},
+    {name : "Italy", daily : 309127/0.85, start_date : new Date(2020,2,9),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+    {name : "Spain", daily : 239046/0.85, start_date : new Date(2020,2,14),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+    {name : "France", daily : 333728/0.85, start_date : new Date(2020,2,17),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+    {name : "Germany", daily : 428368/0.85, start_date : new Date(2020,2,22),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+    {name : "UK", daily : 340751/0.85, start_date : new Date(2020,2,23),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+    {name : "Belgium", daily :59255/0.85, start_date : new Date(2020,2,18),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(),optimum_end:new Date()},
+    {name : "Rest OF Europe", daily : 993706/0.4, start_date : new Date(),end_date : new Date(),Total_Saved : 0,optimum_start:new Date(2020,2,22),optimum_end:new Date()}
 ];
 const wrapperStyles = {
   width: "100%",
@@ -112,8 +71,7 @@ type State = {
 
 function calc(p) {
   return (
-    parseInt((p["end_date"] - p["start_date"]) / (1000 * 60 * 60 * 24)) *
-    p["daily"]
+    ((((p['end_date']-p['start_date'])/(1000*60*60*24))*p['daily']*0.85)+(((p['optimum_end']-p['optimum_start'])/(1000*60*60*24))*p['daily']*0.4))
   );
 }
 //const values = []
@@ -148,7 +106,7 @@ class ReactSimpleMap extends React.PureComponent<void, State> {
         geography.properties.name +
         ": " +
         (mydata.find(s => s.name == geography.properties.name)
-          ? calc(mydata.find(s => s.name == geography.properties.name))+" MT"
+          ? calc(mydata.find(s => s.name == geography.properties.name)).toLocaleString(navigator.language, { minimumFractionDigits: 0 })+" MT"
           : "NA"),
     });
   };
