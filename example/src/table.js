@@ -55,30 +55,32 @@ export default function table()
         {country : "USA", daily : 12898866, start_date : new Date(2020,2,28),end_date : new Date(),Total_Saved : 0},
         {country : "Japan", daily : 981746, start_date : new Date(2020,1,14),end_date : new Date(),Total_Saved : 0},
         {country : "Italy", daily : 309127, start_date : new Date(2020,2,9),end_date : new Date(),Total_Saved : 0},
-        {country : "spain", daily : 239046, start_date : new Date(2020,2,14),end_date : new Date(),Total_Saved : 0},
-        {country : "france", daily : 333728, start_date : new Date(2020,2,17),end_date : new Date(),Total_Saved : 0},
-        {country : "germany", daily : 428368, start_date : new Date(2020,2,22),end_date : new Date(),Total_Saved : 0},
+        {country : "Spain", daily : 239046, start_date : new Date(2020,2,14),end_date : new Date(),Total_Saved : 0},
+        {country : "France", daily : 333728, start_date : new Date(2020,2,17),end_date : new Date(),Total_Saved : 0},
+        {country : "Germany", daily : 428368, start_date : new Date(2020,2,22),end_date : new Date(),Total_Saved : 0},
         {country : "UK", daily : 340751, start_date : new Date(2020,2,23),end_date : new Date(),Total_Saved : 0},
-        {country : "Belgium", daily : 829571, start_date : new Date(2020,1,14),end_date : new Date(),Total_Saved : 0}
-      
+        {country : "Belgium", daily : 829571, start_date : new Date(2020,1,14),end_date : new Date(),Total_Saved : 0},
+        {country : "Rest OF Europe", daily : 13911892, start_date : new Date(2020,2,22),end_date : new Date(),Total_Saved : 0}
       ]
 
    return (
    <Table
-    cards={true}
-    striped={true}
-    responsive={true}
-    className="table-vcenter"
+   responsive
+   highlightRowOnHover
+   hasOutline
+   verticalAlign="center"
+   cards
+   className="text-nowrap"
   >
   
     <Table.Header>
       <Table.Row>
-        <Table.ColHeader colSpan={1}>Country</Table.ColHeader>
-        <Table.ColHeader>Daily Saving MT of CO2</Table.ColHeader>
-        <Table.ColHeader>Date of Lockdown</Table.ColHeader>
-        <Table.ColHeader>Days Since Lockdown</Table.ColHeader>
-        <Table.ColHeader>Total MT CO2 saved </Table.ColHeader>
-        <Table.ColHeader />
+        <Table.ColHeader colSpan={1} alignContent="center">Country</Table.ColHeader>
+        <Table.ColHeader alignContent="center">Daily Saving MT of CO2</Table.ColHeader>
+        <Table.ColHeader alignContent="center">Date of Lockdown</Table.ColHeader>
+        <Table.ColHeader alignContent="center">Days Since Lockdown</Table.ColHeader>
+        <Table.ColHeader alignContent="center">Total MT CO2 saved </Table.ColHeader>
+        
       </Table.Row>
     </Table.Header>
     <Table.Body>
@@ -87,8 +89,10 @@ export default function table()
            {Object.keys(p).filter(k => k !== '').map(k => {
                return (
                    <Table.Col  key={p.country+''+k}>
-                       <div suppressContentEditableWarning="true" contentEditable="true" value={k}  style = {style}>{/*onInput={this.editColumn.bind(this,{p},{k})}*/}
-                           {value(p,k)}</div>
+                       <div suppressContentEditableWarning="False" contentEditable="False" value={k}  style = {style}>{/*onInput={this.editColumn.bind(this,{p},{k})}*/}
+                       <Text size="sm" >
+                       {value(p,k)}
+                      </Text></div>
                        
                    </Table.Col>
                );
