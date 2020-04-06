@@ -169,7 +169,7 @@ function Home() {
       </Grid.Col>
       </Grid.Row>
       <Grid.Row cards={true}>
-      <Grid.Col width={5} sm={4} lg={2}>
+      <Grid.Col width={6} sm={6} lg={6}>
       <Card>
           <Card.Status />
             <Card.Header>
@@ -180,7 +180,7 @@ function Home() {
             </Card.Body>
         </Card>
         </Grid.Col>
-        <Grid.Col width={5} sm={6} lg={2}>
+        <Grid.Col width={6} sm={6} lg={6}>
         <Card>
           <Card.Status />
             <Card.Header>
@@ -191,7 +191,7 @@ function Home() {
             </Card.Body>
         </Card>
         </Grid.Col>
-        <Grid.Col width={5} sm={6} lg={2}>
+        <Grid.Col width={6} sm={6} lg={6}>
         <Card>
       <Card.Status />
       <Card.Header>
@@ -204,7 +204,7 @@ function Home() {
 
         </Grid.Col>
         
-        <Grid.Col width={5} sm={4} lg={2}>
+        <Grid.Col width={6} sm={6} lg={6}>
         <Card>
           <Card.Status />
             <Card.Header>
