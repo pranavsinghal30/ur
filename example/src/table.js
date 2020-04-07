@@ -38,17 +38,21 @@ import {
   {
    if (k == 'end_date')
    {
+       if (((new Date()-p['start_date'])/(1000*60*60*24))< 1)
+       {
+        return parseInt((p[k]-p['optimum_start'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
+       }
        return parseInt((p[k]-p['start_date'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
    } 
    else if ( k == 'start_date')
-   {  //console.log(p['country']+(p['start_date'].getTime()==(new Date().getTime())))
-       if ((p['start_date'].getTime()) == (new Date().getTime()))
+   {  console.log(p['country']+((p['start_date'].getTime()-(new Date().getTime()))/(1000*60*60*24)))
+       if (((new Date()-p['start_date'])/(1000*60*60*24))< 1)
        {console.log("inside if ")
          return p['optimum_start'].getDate()+"/"+(p['optimum_start'].getMonth()+1)}
        
        return p[k].getDate()+"/"+(p[k].getMonth()+1)
    }
-   else if ( k == 'Total_Saved')
+   else if ( k == 'Total CO2 saved')
    {
        return p["Total_Saved"].toLocaleString(navigator.language, { minimumFractionDigits: 0 })
    }

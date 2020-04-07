@@ -5263,6 +5263,7 @@ var Popper = function () {
 Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
 Popper.placements = placements;
 Popper.Defaults = Defaults;
+//# sourceMappingURL=popper.js.map
 
 /*
 object-assign
@@ -10687,7 +10688,7 @@ function ProgressCard(_ref) {
       { className: "text-center" },
       createElement(
         Header,
-        { size: 5 },
+        { size: 3 },
         header
       ),
       createElement(

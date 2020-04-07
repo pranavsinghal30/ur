@@ -184,7 +184,10 @@ mydata.forEach(function(p){
     }
     else 
     {
-      p['end_date'] = new Date()
+      var year = new Date().getFullYear()
+      var month = new Date().getMonth()
+      var day = new Date().getDate()
+      p['end_date'] = new Date(year,month,day)
       //console.log("else end "+p['end_date'])
     }
     if (p['start_date'].length >0)
@@ -208,7 +211,10 @@ mydata.forEach(function(p){
     }
     else
     {
-      p['start_date'] = new Date()
+      var year = new Date().getFullYear()
+      var month = new Date().getMonth()
+      var day = new Date().getDate()
+      p['start_date'] = new Date(year,month,day)
       //console.log("else start "+p['start_date'])
     }
     if (p['optimum_start'].length >0)
@@ -232,7 +238,10 @@ mydata.forEach(function(p){
     }
     else
     {
-      p['optimum_start'] = new Date()
+      var year = new Date().getFullYear()
+      var month = new Date().getMonth()
+      var day = new Date().getDate()
+      p['optimum_start'] = new Date(year,month,day)
       //console.log("else opti start "+p['optimum_start'])
     }
     if (p['optimum_end'].length>0)
@@ -251,7 +260,10 @@ mydata.forEach(function(p){
     }
     else
     {
-      p['optimum_end'] = new Date()
+      var year = new Date().getFullYear()
+      var month = new Date().getMonth()
+      var day = new Date().getDate()
+      p['optimum_end'] = new Date(year,month,day)
       //console.log("else opti end "+p['optimum_end'])
     }
     var tmp = calc(p)
@@ -314,7 +326,7 @@ class HomePage extends Component{
   //this.callbackFunction = this.callbackFunction.bind(this);
   //this.handleChange = this.handleChange.bind(this);
   this.state= { 
-    country:"Japan"
+    country:"India"
   
   }
 };
@@ -347,7 +359,7 @@ render() {
               <Card.Title>CO2 Emissions Saved</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-1">{((st)).toLocaleString(navigator.language,{ minimumFractionDigits: 0 }) + " Million MT"}</Header.H1>
+              <Header.H1 className="display-4 font-weight-bold mb-4">{((st)).toLocaleString(navigator.language,{ minimumFractionDigits: 0 }) + " Million MT"}</Header.H1>
             </Card.Body>
         </Card>
         </Grid.Col>
@@ -358,7 +370,7 @@ render() {
               <Card.Title>Total estimated CO2 emission for the year 2020</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-1">{estimation.toLocaleString(navigator.language,{ minimumFractionDigits: 0 })+" Million MT"}</Header.H1>
+              <Header.H1 className="display-4 font-weight-bold mb-4">{estimation.toLocaleString(navigator.language,{ minimumFractionDigits: 0 })+" Million MT"}</Header.H1>
             </Card.Body>
         </Card>
         </Grid.Col>
@@ -369,7 +381,7 @@ render() {
         <Card.Title>Data Updated On</Card.Title>
       </Card.Header>
       <Card.Body>
-      <Header.H1 className="mb-1">{getDates(new Date())}</Header.H1>
+      <Header.H1 className="display-4 font-weight-bold mb-4">{getDates(new Date())}</Header.H1>
       </Card.Body>
     </Card>
 
@@ -382,7 +394,7 @@ render() {
               <Card.Title>Percentage of Total Estimate Saved</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-1">{(st*100/estimation).toFixed(2) + " %"}</Header.H1>
+              <Header.H1 className="display-4 font-weight-bold mb-4">{(st*100/estimation).toFixed(1) + " %"}</Header.H1>
             </Card.Body>
         </Card>
           
