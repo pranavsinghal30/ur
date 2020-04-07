@@ -31,7 +31,9 @@ function ProgressCard({
         </Progress>
       </Card.Body>
       <Card.Footer>
-        {type? "Percentage of Total CO2 Emissions Saved":"Total CO2 Emissions aved"}
+        {type
+          ? "Percentage of Total CO2 Emissions Saved"
+          : "Total CO2 Emissions saved (Million MT)"}
       </Card.Footer>
     </Card>
   );
