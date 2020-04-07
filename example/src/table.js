@@ -96,8 +96,7 @@ class MyTable extends Component
     <Table.Header>
       <Table.Row>
         <Table.ColHeader colSpan={1} alignContent="left">Country</Table.ColHeader>
-        <Table.ColHeader alignContent="left">Start Date</Table.ColHeader>
-        <Table.ColHeader alignContent="left">Days Since Lowered production</Table.ColHeader>
+        <Table.ColHeader alignContent="left">Days Since Sanctions Imposed</Table.ColHeader>
         <Table.ColHeader alignContent="left">Total CO2 emissions from fuel combustion</Table.ColHeader>        
         <Table.ColHeader alignContent="left">Other energy industry own use*</Table.ColHeader>
         <Table.ColHeader alignContent="left">Manuf. industries  and construction</Table.ColHeader>
@@ -113,7 +112,7 @@ class MyTable extends Component
     <Table.Body>
       {this.data.map(p =>
        <Table.Row key={p.country}>
-           {Object.keys(p).filter(k => (k !== "Total_Saved"&&k !== "optimum_start" && k !== "optimum_end" && k!=="CO2 saved from Manuf, Const & commercial"&& k!=="CO2 saved from Transport")).map(k => {
+           {Object.keys(p).filter(k => (k !== "Total_Saved"&&k !== "start_date"&&k !== "optimum_start" && k !== "optimum_end" && k!=="CO2 saved from Manuf, Const & commercial"&& k!=="CO2 saved from Transport")).map(k => {
                return (
                    <Table.Col  key={p.country+''+k}>
                        <div suppressContentEditableWarning="False" contentEditable="False" value={k}  style = {style}>{/*onInput={this.editColumn.bind(this,{p},{k})}*/}
