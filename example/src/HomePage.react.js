@@ -273,7 +273,7 @@ mydata.forEach(function(p){
   })
 function getDates(d)
 {
-  return d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+  return d.getDate()+"/"+(d.getMonth()+1)+"/"+(d.getFullYear()-2000);
 }
 
 function calc(p)
@@ -352,49 +352,49 @@ render() {
     <Page.Content title="Carbon Emission Savings during COVID-19">
 
       <Grid.Row cards={true}>
-      <Grid.Col width={6} sm={6} lg={6}>
+      <Grid.Col width={6.9} sm={6.9} lg={6.9}>
       <Card>
           <Card.Status />
             <Card.Header>
-              <Card.Title>CO2 Emissions Saved</Card.Title>
+              <Card.Title>CO2 Emissions Saved (Million MT)</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="display-4 font-weight-bold mb-4">{((st)).toLocaleString(navigator.language,{ minimumFractionDigits: 0 }) + " Million MT"}</Header.H1>
+              <Header.H1 className="mb-4">{((st)).toLocaleString(navigator.language,{ minimumFractionDigits: 0 }) }</Header.H1>
             </Card.Body>
         </Card>
         </Grid.Col>
-        <Grid.Col width={6} sm={6} lg={6}>
+        <Grid.Col width={6.9} sm={6.9} lg={6.9}>
         <Card>
           <Card.Status />
             <Card.Header>
-              <Card.Title>Total estimated CO2 emission for the year 2020</Card.Title>
+              <Card.Title>Total estimated CO2 emission for the year 2020 (Million MT)</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="display-4 font-weight-bold mb-4">{estimation.toLocaleString(navigator.language,{ minimumFractionDigits: 0 })+" Million MT"}</Header.H1>
+              <Header.H1 className="mb-4">{estimation.toLocaleString(navigator.language,{ minimumFractionDigits: 0 })}</Header.H1>
             </Card.Body>
         </Card>
         </Grid.Col>
-        <Grid.Col width={6} sm={6} lg={6}>
+        <Grid.Col width={6.9} sm={6.9} lg={6.9}>
         <Card>
       <Card.Status />
       <Card.Header>
         <Card.Title>Data Updated On</Card.Title>
       </Card.Header>
       <Card.Body>
-      <Header.H1 className="display-4 font-weight-bold mb-4">{getDates(new Date())}</Header.H1>
+      <Header.H1 className="mb-4">{getDates(new Date())}</Header.H1>
       </Card.Body>
     </Card>
 
         </Grid.Col>
         
-        <Grid.Col width={6} sm={6} lg={6}>
+        <Grid.Col width={6.9} sm={6.9} lg={6.9}>
         <Card>
           <Card.Status />
             <Card.Header>
               <Card.Title>Percentage of Total Estimate Saved</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="display-4 font-weight-bold mb-4">{(st*100/estimation).toFixed(1) + " %"}</Header.H1>
+              <Header.H1 className="mb-4">{(st*100/estimation).toFixed(1) + " %"}</Header.H1>
             </Card.Body>
         </Card>
           
