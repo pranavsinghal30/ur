@@ -410,6 +410,7 @@ render() {
                   content={this.getCountryData(this.state['country']).toLocaleString(navigator.language,{ minimumFractionDigits: 2 }) + " Million MT"}
                   progressColor="green"
                   progressWidth={this.getCountryData(this.state['country'])}
+                  type = {false}
                 /></Grid.Col>
                 <Grid.Col sm = {6}>
                 <ProgressCard
@@ -417,6 +418,7 @@ render() {
                   content={(this.getCountryData(this.state['country'])*100/estimation).toLocaleString(navigator.language,{ minimumFractionDigits: 2 }) + " %"}
                   progressColor={(this.getCountryData(this.state['country'])*100/st) > 0.1 ? "green" : "red"}
                   progressWidth={this.getCountryData(this.state['country'])*100*100/estimation}
+                  type = {true}
                 />
                 </Grid.Col>
         </Grid.Row>

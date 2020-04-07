@@ -18,17 +18,21 @@ function ProgressCard({
   content,
   progressColor,
   progressWidth,
+  type,
 }: Props): React.Node {
   const classes = cn(className);
   return (
     <Card className={classes}>
       <Card.Body className="text-center">
-        <Header size={5}>{header}</Header>
+        <Header size={3}>{header}</Header>
         <div className="display-4 font-weight-bold mb-4">{content}</div>
         <Progress size="sm">
           <Progress.Bar color={progressColor} width={progressWidth} />
         </Progress>
       </Card.Body>
+      <Card.Footer>
+        {type? "Percentage of Total CO2 Estimates":"Total CO2 Emissions Saved"}
+      </Card.Footer>
     </Card>
   );
 }
