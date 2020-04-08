@@ -40,9 +40,9 @@ import {
    {
        if (((new Date()-p['start_date'])/(1000*60*60*24))< 1)
        {
-        return parseInt((p[k]-p['optimum_start'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 2 })
+        return parseInt((p[k]-p['optimum_start'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
        }
-       return parseInt((p[k]-p['start_date'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 2 })
+       return parseInt((p[k]-p['start_date'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
    } 
    else if ( k == 'start_date')
    {  console.log(p['country']+((p['start_date'].getTime()-(new Date().getTime()))/(1000*60*60*24)))

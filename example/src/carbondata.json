@@ -106,7 +106,7 @@
     "end_date": [],
     "optimum_start": [],
     "optimum_end": [],
-    "Total CO2 emissions \nfrom fuel combustion": [],
+    "Total CO2 emissions \nfrom fuel combustion": 67.4,
     "Other energy \nindustry own use*": 2.3253878180875,
     "Manuf. industries \nand construction": 13.2170066803063,
     "Transport": 18.68527933595,
@@ -1902,7 +1902,7 @@
   {
     "S No": 96,
     "country": "India",
-    "start_date": [2020,3,1],
+    "start_date": [2020,2,22],
     "end_date": [],
     "optimum_start": [],
     "optimum_end": [],
@@ -1942,7 +1942,7 @@
   {
     "S No": 98,
     "country": "Malaysia",
-    "start_date": [2020,3,1],
+    "start_date": [2020,2,16],
     "end_date": [],
     "optimum_start": [],
     "optimum_end": [],
@@ -2182,8 +2182,8 @@
   {
     "S No": 110,
     "country": "China",
-    "start_date": [2020,0,20],
-    "end_date": [],
+    "start_date": [2020,0,15],
+    "end_date": [2020,2,15],
     "optimum_start": [2020,2,15],
     "optimum_end": [],
     "Total CO2 emissions \nfrom fuel combustion": 9679.22775453688,
@@ -2202,8 +2202,8 @@
   {
     "S No": 111,
     "country": "Hong Kong, China",
-    "start_date": [2020,0,20],
-    "end_date": [],
+    "start_date": [2020,0,15],
+    "end_date": [2020,2,15],
     "optimum_start": [2020,2,15],
     "optimum_end": [],
     "Total CO2 emissions \nfrom fuel combustion": 46.0385279292188,

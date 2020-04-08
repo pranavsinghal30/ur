@@ -286,7 +286,7 @@ function calc(p)
   return (day_lockdown*daily + day_opt*daily*0.5)/2
 }
 
-var estimation = 33000;
+var estimation = 33290;
 const style = {
   position: "absolute",
   top: 0, // computed based on child and parent's height
@@ -312,9 +312,9 @@ function getDates(d)
 function calc(p)
 {
   var t = new Date()
-  var day_lockdown = (p['end_date']-p['start_date'])/(1000*60*60*24)
+  var day_lockdown = (p['end_date']-p['start_date'])/(1000*60*60*24)+0.04
   var daily = p['daily']
-  var day_opt = (p['optimum_end']-p['optimum_start'])/(1000*60*60*24)
+  var day_opt = (p['optimum_end']-p['optimum_start'])/(1000*60*60*24)+0.04
   return (day_lockdown*daily + day_opt*daily*0.5)
 }
 
