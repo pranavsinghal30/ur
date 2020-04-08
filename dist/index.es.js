@@ -5211,6 +5211,7 @@ var Popper = function () {
 Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
 Popper.placements = placements;
 Popper.Defaults = Defaults;
+//# sourceMappingURL=popper.js.map
 
 /*
 object-assign
@@ -10653,7 +10654,8 @@ function ProgressCard(_ref) {
     createElement(
       Card.Footer,
       null,
-      type ? "Percentage of Total CO2 Estimates" : "Total CO2 Emissions Saved"
+      type ? "Percentage of Total CO2 Emissions Saved" : "Total CO2 Emissions saved (Million MT)",
+      "}"
     )
   );
 }

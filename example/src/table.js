@@ -40,9 +40,9 @@ import {
    {
        if (((new Date()-p['start_date'])/(1000*60*60*24))< 1)
        {
-        return parseInt((p[k]-p['optimum_start'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
+        return parseInt((p[k]-p['optimum_start'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 2 })
        }
-       return parseInt((p[k]-p['start_date'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
+       return parseInt((p[k]-p['start_date'])/(1000*60*60*24)).toLocaleString(navigator.language, { minimumFractionDigits: 2 })
    } 
    else if ( k == 'start_date')
    {  console.log(p['country']+((p['start_date'].getTime()-(new Date().getTime()))/(1000*60*60*24)))
@@ -54,11 +54,11 @@ import {
    }
    else if ( k == 'Total CO2 saved')
    {
-       return p["Total_Saved"].toLocaleString(navigator.language, { minimumFractionDigits: 0 })
+       return p["Total_Saved"].toLocaleString(navigator.language, { minimumFractionDigits: 2 })
    }
    else if (k == 'daily')
    {
-     return (p[k]).toLocaleString(navigator.language, { minimumFractionDigits: 0 })
+     return (p[k]).toLocaleString(navigator.language, { minimumFractionDigits: 2 })
    }
    else if (k == 'optimum_start' || k == 'optimum_end')
    {
@@ -66,7 +66,7 @@ import {
    }
    else 
    {
-       return p[k].toString()
+       return p[k].toLocaleString(navigator.language, { minimumFractionDigits: 2 })
    }
   }
 const style = 
@@ -103,8 +103,9 @@ class MyTable extends Component
         <Table.ColHeader alignContent="left">Transport</Table.ColHeader>
         <Table.ColHeader alignContent="left">Residential</Table.ColHeader>
         <Table.ColHeader alignContent="left">Commercial and public services</Table.ColHeader>
+        <Table.ColHeader alignContent="left">Daily Saving</Table.ColHeader>
         <Table.ColHeader alignContent="left">Total Saved till Now</Table.ColHeader>
-        <Table.ColHeader alignContent="left">Daily Saving</Table.ColHeader>        
+                
 
         
       </Table.Row>
@@ -112,7 +113,7 @@ class MyTable extends Component
     <Table.Body>
       {this.data.map(p =>
        <Table.Row key={p.country}>
-           {Object.keys(p).filter(k => (k !== "Total_Saved"&&k !== "start_date"&&k !== "optimum_start" && k !== "optimum_end" && k!=="CO2 saved from Manuf, Const & commercial"&& k!=="CO2 saved from Transport")).map(k => {
+           {Object.keys(p).filter(k => (k !== "% C02 savings on Global numbers"&&k !== "S No"&&k !=="Total CO2 saved(yearly)"&&k !== "start_date"&&k !== "optimum_start" && k !== "optimum_end" && k!=="CO2 saved from Manuf, Const & commercial"&& k!=="CO2 saved from Transport")).map(k => {
                return (
                    <Table.Col  key={p.country+''+k}>
                        <div suppressContentEditableWarning="False" contentEditable="False" value={k}  style = {style}>{/*onInput={this.editColumn.bind(this,{p},{k})}*/}

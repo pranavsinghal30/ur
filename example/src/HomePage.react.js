@@ -5,6 +5,7 @@ import ReactSimpleMap from "./ReactSimpleMap";
 import MyTable from "./table";
 import Header from "./Header/Header.react";
 import {Component} from "react";
+
 import {
   Page,
   Avatar,
@@ -285,7 +286,7 @@ function calc(p)
   return (day_lockdown*daily + day_opt*daily*0.5)/2
 }
 
-var estimation = 31557;
+var estimation = 33000;
 const style = {
   position: "absolute",
   top: 0, // computed based on child and parent's height
@@ -311,10 +312,10 @@ function getDates(d)
 function calc(p)
 {
   var t = new Date()
-  var day_lockdown = (p['end_date']-p['start_date'])/(1000*60*60*24)+0.25
+  var day_lockdown = (p['end_date']-p['start_date'])/(1000*60*60*24)
   var daily = p['daily']
-  var day_opt = (p['optimum_end']-p['optimum_start'])/(1000*60*60*24)+0.25
-  return (day_lockdown*daily + day_opt*daily*0.5)/2
+  var day_opt = (p['optimum_end']-p['optimum_start'])/(1000*60*60*24)
+  return (day_lockdown*daily + day_opt*daily*0.5)
 }
 
 class HomePage extends Component{
@@ -370,7 +371,7 @@ render() {
               <Card.Title>Total estimated CO2 emission for the year 2020 (Million MT)</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Header.H1 className="mb-4">{estimation.toLocaleString(navigator.language,{ minimumFractionDigits: 0 })}</Header.H1>
+              <Header.H1 className="mb-4">{(estimation-st).toLocaleString(navigator.language,{ minimumFractionDigits: 0 })}</Header.H1>
             </Card.Body>
         </Card>
         </Grid.Col>
@@ -407,7 +408,7 @@ render() {
 
         <Grid.Col sm = {6}><ProgressCard
                   header={this.state['country']}
-                  content={this.getCountryData(this.state['country']).toLocaleString(navigator.language,{ minimumFractionDigits: 2 }) + " Million MT"}
+                  content={this.getCountryData(this.state['country']).toLocaleString(navigator.language,{ minimumFractionDigits: 2 })}
                   progressColor="green"
                   progressWidth={this.getCountryData(this.state['country'])}
                   type = {false}

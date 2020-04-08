@@ -25,7 +25,7 @@ function ProgressCard({
     <Card className={classes}>
       <Card.Body className="text-center">
         <Header size={3}>{header}</Header>
-        <div className="mb-4">{content}</div>
+        <div className="display-4 font-weight-bold mb-4">{content}</div>
         <Progress size="sm">
           <Progress.Bar color={progressColor} width={progressWidth} />
         </Progress>
@@ -34,6 +34,7 @@ function ProgressCard({
         {type
           ? "Percentage of Total CO2 Emissions Saved"
           : "Total CO2 Emissions saved (Million MT)"}
+        }
       </Card.Footer>
     </Card>
   );
