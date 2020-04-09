@@ -286,7 +286,7 @@ function calc(p)
   return (day_lockdown*daily + day_opt*daily*0.5)/2
 }
 
-var estimation = 33290;
+var estimation = 33000;
 const style = {
   position: "absolute",
   top: 0, // computed based on child and parent's height
